@@ -46,11 +46,10 @@ public class Main {
         String[] parts = equation.split("");
         int errorsAmount = 0;
         String[] acts = {"+","*","/","."};
-        for (int i = 0;i< parts.length-1; i++){
-            if (parts[i+1] != null) {
-                for (String n : acts) {
-                    if ((parts[i].equals(n) || parts[i].equals("-")) && parts[i + 1].equals(n)) errorsAmount++;
-                }
+        for (int i = 0 ; i< parts.length-1; i++){
+            for (String act : acts) {
+                if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/"))) System.out.println("!");
+                System.out.println(parts[i + 1] + " = " + parts[i] + " = " + act);
             }
         }
         return errorsAmount;
