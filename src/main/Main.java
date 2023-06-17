@@ -36,6 +36,7 @@ public class Main {
             for (String equationPart : equationParts) {
                 if (equationPart.equals("(")) bracketAmount++;
                 if (equationPart.equals(")")) bracketAmount--;
+                if (bracketAmount<0) return bracketAmount;
             }
             if (bracketAmount !=0) return bracketAmount;
         }
