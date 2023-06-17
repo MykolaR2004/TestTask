@@ -14,7 +14,7 @@ public class Main {
 
         System.out.println("Кількість чисел у рівнянні = " + equationNumsCount(equation));
         if (equationBracketsCheck(equation) != 0) {System.out.println("Некорректне введення дужок!");}
-        if (equationIsCorrect(equation) > 0) System.out.println("Знайдено " + equationIsCorrect(equation) + " неправильно введених знаків математичних операцій поспіль!");
+        if (equationIsCorrect(equation) > 0) System.out.println("Знайдено більше одного знаків математичних операцій поспіль!");
     }
 
     private int equationNumsCount(String equation) {
@@ -32,12 +32,12 @@ public class Main {
         String[] parts = equation.split("=");
         int bracketAmount = 0;
         for (String part : parts) {
-            bracketAmount = 0;
             String[] equationParts = part.split("");
             for (String equationPart : equationParts) {
                 if (equationPart.equals("(")) bracketAmount++;
                 if (equationPart.equals(")")) bracketAmount--;
             }
+            if (bracketAmount !=0) return bracketAmount;
         }
         return bracketAmount;
     }
@@ -45,10 +45,11 @@ public class Main {
     private int equationIsCorrect(String equation) {
         String[] parts = equation.split("");
         int errorsAmount = 0;
-        String[] acts = {"+","*","/","."};
+        String[] acts = {"+","*","/",".","="};
         for (int i = 0 ; i< parts.length-1; i++){
             for (String act : acts) {
                 if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/"))) errorsAmount++;
+                if (parts[i].equals("=") && parts[i+1].equals("-")) errorsAmount++;
             }
         }
         return errorsAmount;
