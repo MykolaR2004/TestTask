@@ -18,7 +18,7 @@ public class Main {
     }
 
     private int equationNumsCount(String equation) {
-        String[] parts = equation.split("[+\\-*/=()xх ]+");
+        String[] parts = equation.split("[+\\-*/=()x ]+");
         int numsAmount = 0;
         for (String part : parts) {
             if (!Objects.equals(part, "")) {
