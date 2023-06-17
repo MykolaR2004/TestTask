@@ -13,12 +13,12 @@ public class Main {
         String equation = scanner.nextLine();
 
         System.out.println("Кількість чисел у рівнянні = " + equationNumsCount(equation));
-        if (equationBracketsCheck(equation) != 0) {System.out.println("Некорректне введення дужок!");}
+        if (equationBracketsCheck(equation) != 0) System.out.println("Некорректне введення дужок!");
         if (equationIsCorrect(equation) > 0) System.out.println("Знайдено більше одного знаків математичних операцій поспіль!");
     }
 
     private int equationNumsCount(String equation) {
-        String[] parts = equation.split("[+\\-*/=()xх]+");
+        String[] parts = equation.split("[+\\-*/=()xх ]+");
         int numsAmount = 0;
         for (String part : parts) {
             if (!Objects.equals(part, "")) {
