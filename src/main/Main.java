@@ -50,7 +50,6 @@ public class Main {
         for (int i = 0 ; i< parts.length-1; i++){
             for (String act : acts) {
                 if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/"))) errorsAmount++;
-                if (parts[i].equals("=") && parts[i+1].equals("-")) errorsAmount++;
             }
         }
         return errorsAmount;
