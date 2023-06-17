@@ -18,12 +18,12 @@ public class Main {
     }
 
     private int equationNumsCount(String equation) {
-        String[] parts = equation.split("[x+\\-*/=()]+");
+        String[] parts = equation.split("[+\\-*/=()xх]+");
         int numsAmount = 0;
-        for (int i = 0; i < parts.length; i++)
-        {
-            if (!Objects.equals(parts[i], "")) {
-                numsAmount++; }
+        for (String part : parts) {
+            if (!Objects.equals(part, "")) {
+                numsAmount++;
+            }
         }
         return numsAmount;
     }
@@ -48,8 +48,7 @@ public class Main {
         String[] acts = {"+","*","/","."};
         for (int i = 0 ; i< parts.length-1; i++){
             for (String act : acts) {
-                if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/"))) System.out.println("!");
-                System.out.println(parts[i + 1] + " = " + parts[i] + " = " + act);
+                if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/"))) errorsAmount++;
             }
         }
         return errorsAmount;
