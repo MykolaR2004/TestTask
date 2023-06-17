@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -11,35 +12,37 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String equation = scanner.nextLine();
 
-        equationNumsCount(equation);
-        equationBracketsCheck(equation);
-        equationIsCorrect(equation);
+        System.out.println("Кількість чисел у рівнянні = " + equationNumsCount(equation));
+        if (equationBracketsCheck(equation) != 0) {System.out.println("Некорректне введення дужок!");}
+        if (equationIsCorrect(equation) > 0) System.out.println("Знайдено " + equationIsCorrect(equation) + " неправильно введених знаків математичних операцій поспіль!");
     }
 
-    private void equationNumsCount(String equation) {
+    private int equationNumsCount(String equation) {
         String[] parts = equation.split("[x+\\-*/=()]+");
         int numsAmount = 0;
-        for (int i = 1;i< parts.length; i++)
+        for (int i = 0; i < parts.length; i++)
         {
-            numsAmount++;
+            if (!Objects.equals(parts[i], "")) {
+                numsAmount++; }
         }
-        System.out.println("Кількість чисел у рівнянні = " + (numsAmount));
+        return numsAmount;
     }
 
-    private void equationBracketsCheck(String equation) {
+    private int equationBracketsCheck(String equation) {
         String[] parts = equation.split("=");
         int bracketAmount = 0;
         for (String part : parts) {
+            bracketAmount = 0;
             String[] equationParts = part.split("");
             for (String equationPart : equationParts) {
                 if (equationPart.equals("(")) bracketAmount++;
                 if (equationPart.equals(")")) bracketAmount--;
             }
         }
-        if (bracketAmount != 0) System.out.println("Некорректне введення дужок!");
+        return bracketAmount;
     }
 
-    private void equationIsCorrect(String equation) {
+    private int equationIsCorrect(String equation) {
         String[] parts = equation.split("");
         int errorsAmount = 0;
         String[] acts = {"+","*","/","."};
@@ -50,6 +53,6 @@ public class Main {
                 }
             }
         }
-        if (errorsAmount > 0) System.out.println("Знайдено " + errorsAmount + " неправильно введених знаків математичних операцій поспіль!");
+        return errorsAmount;
     }
 }
