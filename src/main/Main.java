@@ -17,7 +17,7 @@ public class Main {
         if (equationIsCorrect(equation) > 0) System.out.println("Знайдено більше одного знаків математичних операцій поспіль!");
     }
 
-    private int equationNumsCount(String equation) {
+    public int equationNumsCount(String equation) {
         String[] parts = equation.split("[+\\-*/=()x ]+");
         int numsAmount = 0;
         for (String part : parts) {
@@ -28,7 +28,7 @@ public class Main {
         return numsAmount;
     }
 
-    private int equationBracketsCheck(String equation) {
+    public int equationBracketsCheck(String equation) {
         String[] parts = equation.split("=");
         int bracketAmount = 0;
         for (String part : parts) {
@@ -43,13 +43,13 @@ public class Main {
         return bracketAmount;
     }
 
-    private int equationIsCorrect(String equation) {
+    public int equationIsCorrect(String equation) {
         String[] parts = equation.split("");
         int errorsAmount = 0;
         String[] acts = {"+","*","/",".","="};
         for (int i = 0 ; i< parts.length-1; i++){
             for (String act : acts) {
-                if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/") || parts[i+1].equals("="))) errorsAmount++;
+                if ((parts[i].equals(act) || parts[i].equals("-")) && (parts[i+1].equals("+") || parts[i+1].equals("*") || parts[i+1].equals("/")|| parts[i+1].equals("="))) errorsAmount++;
             }
         }
         return errorsAmount;
